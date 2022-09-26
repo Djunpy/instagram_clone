@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" lang="ru">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+     <title>{% block head_title %}Welcome to home page{% endblock %}</title>
+</head>
+<body>
+{% block header %}
+    {% include 'inc/header.html' %}
+{% endblock %}
+
+{% include 'inc/create-post.html' %}
+
+
+{% block content %}
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

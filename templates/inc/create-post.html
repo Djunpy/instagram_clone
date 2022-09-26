@@ -1,0 +1,36 @@
+{% load static %}
+{% block header %}
+{% endblock %}
+{% block content %}
+    <div class="create-post">
+        <div class="crete-post__box">
+            <div class="create__post-header">
+                <a class='bx bx-left-arrow-alt' id="close-upload-menu"></a>
+                <h3>Создание публикации</h3>
+                <button class="btn" id="btn-save-mod">Поделиться</button>
+            </div>
+            <div class="create__post-img">
+                <img id="upload-img" src="{% static 'images/upload-image1.png' %}" alt="">
+            </div>
+            <div class="create__post-form">
+                <div class="post__profile-box">
+                    <div class="post__profile-img stories__profile-img">
+                        <img src="{% static 'images/cover 5.png' %}" alt="">
+                    </div>
+                    <p class="post__profile-name">username</p>
+                </div>
+                <form action="{% url 'create-post' %}" method="post" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <textarea class="form__area" id="id_description" name="description" cols="30" rows="10" placeholder="Добавьте подпись...."></textarea>
+                    <input class="form__input" id="id_tags" type="text" placeholder="Добавьте теги..." name="tags">
+                    <input type="file" hidden id="id_picture" accept="image/png, image/jpeg" name="picture">
+                    <label class="btn-upload-photo" for="id_picture">Выбрать с компьютера</label>
+                    <input type="submit" hidden id="btn-save-default">
+{#                    <button  class="btn-upload-photo" >Выбрать с компьютера </button>#}
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

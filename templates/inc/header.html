@@ -1,0 +1,16 @@
+{% load static %}
+<header class="header">
+    <div class="header__box">
+        <img class="header__logo" src="{% static 'images/logo.PNG' %}" alt="">
+        <input type="search" class="header__search" placeholder="Поиск">
+        <div class="header__icons">
+            <a href=""><img class="icons__item" src="{% static 'images/home.PNG' %}" alt=""></a>
+            <a href=""><img class="icons__item" src="{% static 'images/comment.PNG' %}" alt=""></a>
+            <a href=""><img class="icons__item" id="create-post" src="{% static 'images/add.PNG' %}" alt=""></a>
+            <a href=""><img class="icons__item" src="{% static 'images/explore.PNG' %}" alt=""></a>
+            <a href=""><img class="icons__item" src="{% static 'images/like.PNG' %}" alt=""></a>
+            <a href="" class="icons__profile" style='background-image: url("{% static "images/profile-pic.png" %}");'></a>
+{#            <div class="icons__profile" style='background-image: url("{% static "images/profile-pic.png"%}")'></div>#}
+        </div>
+    </div>
+</header>

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Регистрация" %}{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    <section class="auth">
+
+        <div class="auth__box">
+            <div class="auth__form">
+                <img class="auth__logo" src="{% static 'images/logo.PNG' %}" alt="">
+                <button class="btn btn-login" type="button"><i class='bx bxl-facebook-square'></i> Войти через Facebook
+                </button>
+                <div class="auth__divider">
+                    <div class="auth__line"></div>
+                    <p>ИЛИ</p>
+                    <div class="auth__line"></div>
+                </div>
+                <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+                    <input
+                            class="form__box"
+                            type="text"
+                            name="username"
+                            placeholder="Логин"
+                            autocomplete="username"
+                            minlength="1"
+                            maxlength="150"
+                            required=""
+                            id="id_username"
+                    >
+                    <input
+                            class="form__box"
+                            type="email"
+                            name="email"
+                            placeholder="Почта"
+                            autocomplete="email"
+                            id="id_email"
+                    >
+                    <input
+                            class="form__box"
+                            type="password"
+                            name="password1"
+                            placeholder="Пароль"
+                            autocomplete="new-password"
+                            required=""
+                            id="id_password1"
+                    >
+                    <input
+                            class="form__box"
+                            type="password"
+                            name="password2"
+                            placeholder="Повторите пароль"
+                            autocomplete="new-password"
+                            required=""
+                            id="id_password2"
+                    >
+                    {#                {{ form.as_p }}#}
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}
+                    <button class="btn btn-login" type="submit">{% trans "Регистрация" %}</button>
+                </form>
+            </div>
+            <div class="auth__redirect-signup">
+                <p>Есть аккаунт? <a href="{{ login_url }}">Зарегистрироваться</a></p>
+            </div>
+            <div class="auth__playmarket">
+                <p>Установите приложение.</p>
+                <div class="auth__playmarket-img">
+                    <img src="{% static 'images/play-store.svg' %}" alt="">
+                    <img src="{% static 'images/app-store.svg' %}" alt="">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+{#<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">#}
+{#  {% csrf_token %}#}
+{#  {{ form.as_p }}#}
+{#  {% if redirect_field_value %}#}
+{#  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />#}
+{#  {% endif %}#}
+{#  <button type="submit">{% trans "Sign Up" %} &raquo;</button>#}
+{#</form>#}
+
+{% endblock %}
