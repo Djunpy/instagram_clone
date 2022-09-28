@@ -2,28 +2,54 @@
 {% load static %}
 
 {% block content %}
-<section class="profile">
-    <div class="profile__box">
-        <div class="profile__head">
-            <div class="profile__img">
-                <img src="{% static 'images/profile-pic.png' %}" alt="">
+    <section class="profile">
+        <div class="profile__box">
+            <div class="profile__head">
+                <div class="head__img">
+                    <div>
+                        <img src="{% static 'images/profile-pic.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="head__box">
+                    <div class="head__setting">
+                        <h2>{{ profile.user.username }}</h2>
+                        <button type="button" class="btn">Редактировать профиль</button>
+                        <a type="button" class="btn"><i class='bx bx-cog'></i></a>
+                    </div>
+                    <div class="head__box-spa"></div>
+                    <ul class="head__stat">
+                        <li>7 <span>публикаций</span></li>
+                        <li>7 <span>публикаций</span></li>
+                        <li>7 <span>публикаций</span></li>
+                    </ul>
+                    <div class="head__info">
+                        <span>{{ profile.user.username  }}</span>
+                        <div class="info__bio">
+                            Lorem ipsum dolor sit.
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="profile__settings">
-                <h1>Usename</h1>
-                <button type="button" class="btn btn-profile">Редактировать профиль</button>
-                <a href=""><i class='bx bx-cog'></i></a>
-            </div>
-            <div class="profile__metric">
-                <ul>
-                    <li>3 <span>публикаций</span></li>
-                    <li>4 <span>публикаций</span></li>
-                    <li>6 <span>публикаций</span></li>
+
+            <div class="profile__posts">
+                <ul class="profile__posts-head">
+                    <li {% if url_name == 'profile' %} class="active" {% endif %}><a href="{% url 'profile' %}"><i class='bx bx-table'> <span>Публикации</span></i></a></li>
+                    <li {% if url_name == 'favorite-posts' %} class="active" {% endif %}><a href="{% url 'favorite-posts' %}"><i class='bx bx-bookmark'> <span>Сохраненное</span></i></a></li>
                 </ul>
-            </div>
-            <div class="profile__bio">
-                <p><span>Name</span> bio</p>
+                <div class="profile__media">
+                    {% for post in posts %}
+                    <div class="media__img">
+                        <a href="">
+                            <img src="{{ post.picture.url }}" alt="">
+                            <ul class="media__icon">
+                                <li><i class='bx bx-heart'></i></li>
+                                <li><i class='bx bx-message-rounded-dots'></i></li>
+                            </ul>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endblock %}

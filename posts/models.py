@@ -61,8 +61,8 @@ class Post(models.Model):
     published = models.BooleanField(default=True)
     created = models.DateTimeField(default=timezone.now)
     tags = models.ManyToManyField(Tag, related_name='tags', blank=True)
-    favorites = models.ManyToManyField(Profile, blank=True)
-    liked = models.ManyToManyField(User, blank=True, related_name='like')
+    favorites = models.ManyToManyField(Profile, blank=True, related_name='favorites')
+    liked = models.ManyToManyField(Profile, blank=True, related_name='like')
 
     class Meta:
         verbose_name = 'Пост'

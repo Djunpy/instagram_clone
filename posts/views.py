@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,17 +7,21 @@ from django.views.generic import View, ListView
 from .models import Post, Tag, Stream
 from .forms import CreatePostForm
 
+class HomePageView(LoginRequiredMixin, View):
 
-class HomePageView(LoginRequiredMixin, ListView):
-    model = Post
     template_name = 'home-page.html'
-    allow_empty = False
+    model = Post
 
-    def get_object_list(self):
-        stream_post_ids = Stream.objects.values_list('post_id', flat=True)
-        queryset = self.model.objects.select_related('user').filter(id__in=list(stream_post_ids)).order_by('-created')
+    def get(self, *args, **kwargs):
+        context = {
+            'object_list': self.get_queryset()
+        }
+        return render(self.request, self.template_name, context)
+
+    def get_queryset(self):
+        stream_post_ids = Stream.objects.filter(user=self.request.user).values_list('post_id', flat=True)
+        queryset = self.model.objects.select_related('user').filter(id__in=stream_post_ids).order_by('-created')
         return queryset
-
 
 class CreatePostView(LoginRequiredMixin, View):
     model = Post

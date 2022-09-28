@@ -33,7 +33,8 @@ class ProfileView(LoginRequiredMixin, View):
 
         context = {
             'posts': page,
-            'profile': profile
+            'profile': profile,
+            'url_name': url_name,
         }
         return render(self.request, self.template_name, context)
 

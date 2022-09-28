@@ -28,7 +28,6 @@ class Profile(models.Model):
     url = models.CharField(max_length=80, null=True, blank=True)
     info = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
-    favorites = models.ManyToManyField('posts.Post')
     picture = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
 
     def save(self, *args, **kwargs):
